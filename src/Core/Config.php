@@ -24,10 +24,10 @@ Class Config {
      * database_type - Define Database engine / system
      */
     private $databaseCredentials = [
-        'host' => '',
-        'username' => '',
-        'password' => '',
-        'db_name' => '',
+        'host' => 'localhost',
+        'username' => 'root',
+        'password' => 'MyStrongPassword1234$',
+        'db_name' => 'NEO',
         'database_type' => 'mysql',
     ];
 

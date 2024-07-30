@@ -16,14 +16,6 @@ class TaskModel extends CoreModel{
         }
         $this->setTableName('task');
     }
-
-    /*
-     * count the task
-     *
-     * @param array $where where statement of SQL
-     *
-     * @return int of row count or 0 if error
-     */
     public function countTasks($where){
         $response = $this->executeORM(['count' => true,'where' => $where]);
         if($this->utilityObject->isSuccessResponse($response)){
@@ -32,14 +24,6 @@ class TaskModel extends CoreModel{
         return 0;
     }
 
-    /*
-     * send the task related row info
-     *
-     * @param array $select select statement of SQL
-     * @param array $where where statement of SQL
-     *
-     * @return array of row result or [] if error
-     */
     public function getTasks($select = [],$where = []){
         $response = $this->executeORM(['where' => $where,'select' => $select]);
         if($this->utilityObject->isSuccessResponse($response)){
@@ -48,13 +32,6 @@ class TaskModel extends CoreModel{
         return [];
     }
 
-    /*
-     * add the task
-     *
-     * @param array $data task related info
-     *
-     * @return array of last inserted row id with success or error
-     */
     public function add($data = []){
         if(!empty($data)){
             return $this->executeORM(['insert' => true,'data' =>$data]);
@@ -63,14 +40,6 @@ class TaskModel extends CoreModel{
         }
     }
 
-    /*
-     * update the task
-     *
-     * @param int $id primary key of task table
-     * @param array $data which data to update
-     *
-     * @return array of row affected with success or error with error message
-     */
     public function updateTask($id,$data =[]){
         if(!empty($id)){
             return $this->executeORM(['update' => true,'data' =>$data,'where' => ['id' => $id]]);
@@ -79,13 +48,7 @@ class TaskModel extends CoreModel{
         }
     }
 
-    /*
-     * delete the task
-     *
-     * @param int $id primary key of task table
-     *
-     * @return array of row affected with success or error with error message
-     */
+
     public function deleteTask($id){
         if(!empty($id)){
             return $this->executeORM(['delete' => true,'where' => ['id' => $id]]);
@@ -94,11 +57,6 @@ class TaskModel extends CoreModel{
         }
     }
 
-    /*
-     * remove complete task from task table
-     *
-     * @return array of row affected with success or error with error message
-     */
     public function removeCompleted(){
         return $this->executeORM(['delete' => true,'where' => ['status' => 1]]);
     }

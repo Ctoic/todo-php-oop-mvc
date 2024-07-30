@@ -6,11 +6,6 @@ Class Route{
     private $route_path = '/';
     private $config = '';
 
-    /*
-     * Set route and initialise routing system
-     *
-     * @param $config - take config class for credentials, landing page
-     */
     public function __construct($config)
     {
         if (isset($_SERVER['PATH_INFO']))
@@ -24,14 +19,6 @@ Class Route{
     private function pathSplit($path){
        return explode('/', ltrim($path));
     }
-
-    /*
-     * Core routing System
-     *
-     * Decide which controller and its method to load
-     * load the controller and method if run successfully
-     * exit the application if requested controller, method not found
-     */
     private function defineRoute(){
         if($this->route_path === '/'){
             //go to home

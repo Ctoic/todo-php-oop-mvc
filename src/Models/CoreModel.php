@@ -14,12 +14,6 @@ class CoreModel extends Config{
     {
         $this->utilityObject = new Utility();
     }
-
-    /*
-     * Check the Database connection
-     *
-     * @return array with success status and connection if connection is success.
-     */
     public function makeConnection(){
         $response = [
             'status' =>'error',
@@ -79,18 +73,6 @@ class CoreModel extends Config{
         $this->table = $table;
         return true;
     }
-
-    /*
-     * Run SQL with given inputs
-     *
-     * @link https://medoo.in/api/select
-     *
-     * @param array $where define where condition in a SQL
-     * @param array $select define select statement in a SQL
-     * @param array $order define order statement in a SQL
-     * @param array $join define join statement in a SQL ex: [>] == LEFT JOIN,[<] == RIGH JOIN,[<>] == FULL JOIN,[><] == INNER JOIN]
-     * @param array $limit define limit statement in a SQL. ex: limit [0,2] or 20
-     */
     public function runSQL($where = [],$select = [],$order = [],$join = [],$limit = []){
         $response = [
             'status' =>'error',
@@ -139,23 +121,6 @@ class CoreModel extends Config{
         return $response;
     }
 
-    /*
-     * Central function helps to run various SQL operation in ORM style
-     *
-     * @param sql
-     * - insert bool true means insert data
-     * - update bool true means update data
-     * - delete bool true means delete data
-     * - count bool true means count rows
-     * - get bool true means select rows and get data
-     * - where array means where condition in a SQL
-     * - columns array which means which table's column should be in select statement in SQL
-     * - order array define order statement in a SQL
-     * - join array define join statement in a SQL ex: [>] == LEFT JOIN,[<] == RIGH JOIN,[<>] == FULL JOIN,[><] == INNER JOIN]
-     * - limit array define limit statement in a SQL. ex: limit [0,2] or 20
-     *
-     * @return array with success or error with a error message
-     */
     public function executeORM($sql){
         $connection = $this->connection;
         $tblName = $this->table;
